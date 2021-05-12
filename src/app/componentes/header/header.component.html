@@ -1,0 +1,38 @@
+
+  <header>
+    <div class="center-header">
+       <div class="barra">
+         <a href="#"   [routerLink]="[ '/inicio']" class="enlance">
+          <h1>Rodrigo Sancho</h1>
+         
+         </a>
+
+         
+      <div class="movil-menu" (click)="funcion1()">
+          <img  src="assets/img/barras.svg" alt="icono-menu-movil"  loading="lazy">
+      </div>
+
+       
+      
+       </div>
+       <div class="derecha">
+          <nav class="navegacion">
+            <a  href="inicio.html" [routerLink]="[ '/inicio']">
+                Inicio
+            </a>
+              <a  href="sobremi.html" [routerLink]="[ '/sobremi']">
+                  Sobre mí
+              </a>
+              <a href="poyectos.html" [routerLink]="[ '/proyectos']">
+                  Proyectos
+              </a>
+            <!--   <a href="blog.html">
+                  Blog
+              </a> -->
+              <a href="contacto.html" [routerLink]="[ '/contacto']">
+                  Contacto
+              </a>
+          </nav>
+       </div>
+    </div>
+</header>
