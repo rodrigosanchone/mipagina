@@ -1,0 +1,13 @@
+<section class="center misProyectos">
+    <h2>Mis proyectos</h2>
+    <div class="proyectos">
+        <div class="tarjeta" *ngFor="let proyecto of proyectos, let i=index">
+            <img [src]="proyecto.img" alt="proyecto.titulo" loading="lazy">
+            <h3>{{proyecto.titulo}}</h3>
+            <div class="infotarjeta">
+                <p>{{proyecto.info}}</p>
+            </div>
+            <a href={{proyecto.url}} target="_blank" class="boton-amarillo">Ver</a>
+        </div>
+    </div>
+ </section>
