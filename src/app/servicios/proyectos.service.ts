@@ -26,7 +26,7 @@ export class ProyectosService {
 
     ) {
       this.proyectosColeccion = db.collection('proyectos',ref=>ref.orderBy('titulo','asc'));
-      this.proyectosColeccion2= db.collection('proyectos',ref=>ref.orderBy('titulo','asc').limitToLast(3));
+      this.proyectosColeccion2= db.collection('proyectos',ref=>ref.orderBy('titulo','desc').limitToLast(3));
       const ref = this.storage.ref('path/to/file.pdf');
     
     }
