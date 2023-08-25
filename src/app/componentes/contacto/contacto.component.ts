@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2'
 @Component({
@@ -9,12 +9,12 @@ import Swal from 'sweetalert2'
 })
 export class ContactoComponent implements OnInit {
 
-  form: FormGroup;
-  nombre: FormControl = new FormControl("", [Validators.required]);
-  email: FormControl = new FormControl("", [Validators.required, Validators.email]);
-  mensaje: FormControl = new FormControl("", [Validators.required, Validators.maxLength(256)]);
-   telefono: FormControl = new FormControl("", [Validators.required]);
-  honeypot: FormControl = new FormControl(""); // we will use this to prevent spam
+  form: UntypedFormGroup;
+  nombre: UntypedFormControl = new UntypedFormControl("", [Validators.required]);
+  email: UntypedFormControl = new UntypedFormControl("", [Validators.required, Validators.email]);
+  mensaje: UntypedFormControl = new UntypedFormControl("", [Validators.required, Validators.maxLength(256)]);
+   telefono: UntypedFormControl = new UntypedFormControl("", [Validators.required]);
+  honeypot: UntypedFormControl = new UntypedFormControl(""); // we will use this to prevent spam
   submitted: boolean = false; // show and hide the success message
   isLoading: boolean = false; // disable the submit button if we're loading
   responseMessage!: string; // the response message to show to the user
@@ -23,7 +23,7 @@ export class ContactoComponent implements OnInit {
   responseMessage4!: string; // the response message to show to the user
  // the response message to show to the user
   siteKey: string;
-  constructor(private formBuilder: FormBuilder, private http: HttpClient) {
+  constructor(private formBuilder: UntypedFormBuilder, private http: HttpClient) {
     this.siteKey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI";
     this.form = this.formBuilder.group({
       nombre: this.nombre,
