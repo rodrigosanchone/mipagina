@@ -201,5 +201,8 @@
       }
     }
   },
-  "defaultProject": "rodrigosancho2"
+  "defaultProject": "rodrigosancho2",
+  "cli": {
+    "analytics": "78764969-a1c2-4008-a187-155d19f6641d"
+  }
 }
