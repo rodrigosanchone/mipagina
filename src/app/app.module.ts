@@ -8,9 +8,9 @@ import { AppComponent } from './app.component';
 import { FooterComponent } from './componentes/footer/footer.component';
 
 //firebase
-import{AngularFireModule} from '@angular/fire';
-import{AngularFirestoreModule,SETTINGS} from '@angular/fire/firestore';
-import { AngularFireStorageModule,BUCKET} from '@angular/fire/storage';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule,SETTINGS } from '@angular/fire/compat/firestore';
+/* import { AngularFireStorageModule,BUCKET} from '@angular/fire/storage'; */
 
 //servicios
 import { ProyectosService } from './servicios/proyectos.service';
@@ -48,14 +48,14 @@ import { ProyectosComponent } from './componentes/proyectos/proyectos.component'
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firestore,'rodrigosancho'),
     AngularFirestoreModule,
-    AngularFireStorageModule,
+
     ReactiveFormsModule,
     HttpClientModule,
-    NgxCaptchaModule
+   // NgxCaptchaModule
   ],
   providers: [
     ProyectosService,
-    {provide:BUCKET,useValue:'rodrigosancho-8e447'},
+  /*   {provide:BUCKET,useValue:'rodrigosancho-8e447'}, */
     {provide: SETTINGS,useValue:{}}
   ],
   bootstrap: [AppComponent]

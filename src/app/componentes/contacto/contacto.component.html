@@ -1,34 +1,28 @@
 <main class="center">
     <h2>Me encantaría recibir tu mensaje</h2>
-    <form class="formulario" [formGroup]="form" method="post" (ngSubmit)="onSubmit()">
+    <form class="formulario" [formGroup]="form" method="post" (ngSubmit)="onSubmit($event)">
       <fieldset>
         <legend>Datos personales</legend>
         <div>
   
           <label for="nombre">Nombre</label>
-          <input type="text" placeholder="Ingrese su nombre" formControlName="nombre" id="nombre" [formControl]="nombre" required>
+          <input type="text" placeholder="Ingrese su nombre" formControlName="nombre" id="nombre" [formControl]="nombre" required name="from_name">
           <div [ngClass]="!submitted? 'hidden' : 'visible'" class="alerta">
             <span class="alerta">{{responseMessage}}</span>
           </div>
         </div>
         <div>
           <label for="email">Email</label>
-          <input type="email" placeholder="Tu email" id="email" [formControl]="email" required>
+          <input type="email" placeholder="Tu email" id="email" [formControl]="email" required name="email_name">
           <div [ngClass]="!submitted? 'hidden' : 'visible'" class="alerta">
             <span class="alerta">{{responseMessage2}}</span>
           </div>
         </div>
-        <div>
-          <label for="telefono">Teléfono</label>
-          <input type="phone" placeholder="Tu Teléfono" id="" [formControl]="telefono" required>
-          <div [ngClass]="!submitted? 'hidden' : 'visible'" class="alerta">
-            <span class="alerta">{{responseMessage3}}</span>
-          </div>
-        </div>
+        
   
         <div class="mensaje">
           <label for="mensaje">Mensaje</label>
-          <textarea id="mensaje" [formControl]="mensaje" required></textarea>
+          <textarea id="mensaje" [formControl]="mensaje" required name="message"></textarea>
           <div [ngClass]="!submitted? 'hidden' : 'visible'" class="alerta">
             <span class="alerta">{{responseMessage4}}</span>
           </div>
@@ -36,10 +30,7 @@
         <!--Aqui va el recaptcha-->
         <div class="mensaje">
          
-            <form>
-              <ngx-invisible-recaptcha #captchaElem [siteKey]="siteKey">
-              </ngx-invisible-recaptcha>
-            </form>
+            
           
         </div>
         <!--Aqui va el recaptcha-->

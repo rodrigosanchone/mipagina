@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 import Swal from 'sweetalert2'
 @Component({
   selector: 'app-contacto',
@@ -24,7 +25,7 @@ export class ContactoComponent implements OnInit {
  // the response message to show to the user
   siteKey: string;
   constructor(private formBuilder: UntypedFormBuilder, private http: HttpClient) {
-    this.siteKey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI";
+  
     this.form = this.formBuilder.group({
       nombre: this.nombre,
       email: this.email,
@@ -35,17 +36,8 @@ export class ContactoComponent implements OnInit {
   }
   ngOnInit(): void {
   }
-  onSubmit() {
-    
-     if(!this.nombre.value || !this.email.value || !this.telefono.value || !this.mensaje.value){
-      Swal.fire({
-        title: 'Error!',
-        text: 'Faltan datos que rellenar',
-        icon: 'error',
-        confirmButtonText: 'Volver'
-      })
-     }
-  
+  onSubmit(e:Event) {
+    e.preventDefault();
     if(this.nombre.value.length < 3){
       this.responseMessage = "Este campo debe de tener minimo 3 caracteres";
       setInterval(()=>{
@@ -59,12 +51,7 @@ export class ContactoComponent implements OnInit {
         this.responseMessage2 = "";
       },4000);  
     }
-    if(!this.telefono.value ){
-      this.responseMessage3 = "Debe ingresar el teléfono.";
-      setInterval(()=>{
-        this.responseMessage3 = "";
-      },4000);  
-    }
+   
 
     if(!this.mensaje.value ){
       this.responseMessage4 = "Debe ingresar el mensaje.";
@@ -72,51 +59,32 @@ export class ContactoComponent implements OnInit {
         this.responseMessage4 = "";
       },4000);  
     } 
-     
     
-    
-      if (this.form.status == "VALID" && this.honeypot.value == "") {
-       
-        this.form.disable(); // disable the form if it's valid to disable multiple submissions
-        var formData: any = new FormData();
-        formData.append("name", this.nombre.value)
-        formData.append("email", this.email.value);
-        formData.append("mensaje", this.mensaje.value);
-        formData.append("telefono", this.telefono.value);
-        this.isLoading = true; // sending the post request async so it's in progress
-        this.submitted = false; // hide the response message on multiple submits
-        this.http.post("https://script.google.com/macros/s/AKfycbxBiqg8sfSlh2FJsR1UZ7yjFEqx3RgKUWy0ngkiQ8JOOIYmVN52DlgFo2Bi3Jd37YZU/exec", formData).subscribe(
-          (response:any) => {
-            // choose the response message
-            if (response["result"] == "success") {
-            /*   this.responseMessage = "Gracias por escribir, pronto te contactare!"; */
-              Swal.fire({
-                title: 'Enviado!',
-                text: 'Gracias por contactarme, pronto te contactara',
-                icon: 'success',
-                confirmButtonText: 'Cool'
-              })
+     if(!this.nombre.value || !this.email.valid || !this.mensaje.value){
+      Swal.fire({
+        title: 'Error!',
+        text: 'Faltan datos que rellenar',
+        icon: 'error',
+        confirmButtonText: 'Volver'
+      })
+     }else{
+      emailjs.sendForm('service_kwv3ht8', 'template_ftcal99', e.target as HTMLFormElement, 'zwIzwnKmBo1nR7wmu')
+      .then((result: EmailJSResponseStatus) => {
+        console.log(result.text);
+      }, (error) => {
+        console.log(error.text);
+      });
+      Swal.fire({
+        title: 'Enviado!',
+        text: 'Gracias por contactarme, pronto te contactara',
+        icon: 'success',
+        confirmButtonText: 'Cool'
+      })
+      this.form.reset()
+     }
   
-            } else {
-              this.responseMessage = "Oops! Algo salio mal.";
-            }
-            this.form.enable(); // re enable the form after a success
-            this.submitted = true; // show the response message
-            this.isLoading = false; // re enable the submit button
-            console.log(response);
-          },
+ 
     
-          (error) => {
-          
-          /*   this.responseMessage = "Oops! Algo salio mal."; */
-            this.form.enable(); // re enable the form after a success
-            this.submitted = true; // show the response message
-            this.isLoading = false; // re enable the submit button
-            console.log(error);
-          }
-         
-        );
-      }
 
     }
   

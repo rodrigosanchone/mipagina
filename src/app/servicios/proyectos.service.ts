@@ -1,7 +1,10 @@
 
 import { Injectable } from '@angular/core';
-import { AngularFirestoreCollection, AngularFirestoreDocument, AngularFirestore } from '@angular/fire/firestore';
-import { AngularFireStorage } from '@angular/fire/storage';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+
+import { AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import {Proyecto} from '../modelos/proyecto.modelo';
 
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
