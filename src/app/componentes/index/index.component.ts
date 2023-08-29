@@ -23,7 +23,6 @@ export class IndexComponent implements OnInit {
     this.proyectosServicios.ultimos().subscribe(
       proyectos=>{
         this.proyectos=proyectos;
-    /*   console.log(this.proyectos) */
       }
     )
   }

@@ -70,9 +70,9 @@ export class ContactoComponent implements OnInit {
      }else{
       emailjs.sendForm('service_kwv3ht8', 'template_ftcal99', e.target as HTMLFormElement, 'zwIzwnKmBo1nR7wmu')
       .then((result: EmailJSResponseStatus) => {
-        console.log(result.text);
+         
       }, (error) => {
-        console.log(error.text);
+    
       });
       Swal.fire({
         title: 'Enviado!',

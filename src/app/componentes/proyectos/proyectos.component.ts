@@ -22,7 +22,6 @@ export class ProyectosComponent implements OnInit {
     this.proyectosServicios.getProyectos().subscribe(
       proyectos=>{
         this.proyectos=proyectos;
-    /*    console.log(this.proyectos) */
       }
     )
   }
